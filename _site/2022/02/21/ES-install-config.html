@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>ES安装与配置 | 真实思想</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="ES安装与配置" />
+<meta name="author" content="True-Think" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Elasticsearch是一个基于Lucene库的搜索引擎。它提供了一个分布式、支持多租户的全文搜索引擎，具有HTTP?Web接口和无模式JSON文档。Elasticsearch是用Java开发的，并在Apache许可证下作为开源软件发布。官方客户端在Java、.NET（C#）、PHP、Python、Apache Groovy、Ruby和许多其他语言中都是可用的。[5]根据DB-Engines的排名显示，Elasticsearch是最受欢迎的企业搜索引擎，其次是Apache Solr，也是基于Lucene。 — 维基百科 Elasticsearch（以下简称ES）的安装步骤为： 下载安装文件，完成解压； 放入安装目录，设置配置文件； 后台启动 其他：添加分词插件；用户权限 一、下载安装文件，完成解压 下载地址： 官网: https://www.elastic.co/cn/downloads/elasticsearch 或 中文社区：https://elasticsearch.cn/download/ 如下载了版本7.3.2。主要关心的文件为 |目录 | 配置文件 | 描述 | |— |— |— | |bin |– |放置脚本文件，如启动脚本 elasticsearch, 插件安装脚本等。| |config |elasticserch.yml |elasticsearch 配置文件，如集群配置、jvm 配置等。| |jdk |– |java 运行环境 | |data |path.data |数据持久化文件 | |lib |– |依赖的相关类库 | |logs |path.log |日志文件 | |modules |– |包含的所有 ES 模块 | |plugins |– |包含的所有已安装的插件 | 注：data和logs会占用较大的空间，需要选择足够空间的位置，尽量不要放在安装目录下 二、放入安装目录，设置配置文件 安装前确保JDK已安装，并设置JAVA_HOME的环境变量。 (Elasticsearch 7.0 开始，内置了 Java 环境) export JAVA_HOME=/usr/local/jdk1.8.0_181 export PATH=$PATH:$JAVA_HOME/bin 放入安装目录后（如 /usr/local/elasticsearch/），开始编辑配置文件 config/elasticserch.yml cluster.name: elasticsearch # ES名称 node.name: node-1 # 节点名称 # data storage info path.data: /data/to_path/es_data/data # 数据存储位置 path.logs: /data/to_path/es_data/logs # 数据操作日志 bootstrap.memory_lock: false #内存锁 discovery.seed_hosts: [“127.0.0.1”] # 集群主机列表 cluster.initial_master_nodes: [“node-1”] # 初始化节点名称 http.port: 9200 # http 访问接口 transport.tcp.port: 9300 # tcp通信端口 #gateway.recover_after_nodes: 3 network.host: 0.0.0.0 # 外部访问设置 # head插件可访问es并且开启ES跨域 http.cors.enabled: true http.cors.allow-origin: “*” 三、后台启动 进入bin/目录下 启动测试 ./elasticsearch 这时候可能会遇到一些问题，可以去[常见问题解答]和[参考]中寻找对应的问题。 然后关闭进程 ps -aux | grep elasticsearch kill -9 [pid] 后台启动 ./elasticsearch -d 但可能会出现./elasticsearch正常启动，但./elasticsearch -d 则会报错，改成如下则成功 ./elasticsearch d 四、其他 1、分词插件 1）进入 https://github.com/medcl/elasticsearch-analysis-ik/releases 选择与安装ES版本对应的ik插件 2）在plugins/下，新建ik/目录，将分词插件解压后放入该目录 2、es用户登录启动 groupadd es # 创建组名 useradd es -g es # 创建用户并加入组 passwd es # 设置用户密码 chown –R es:es /usr/local/elasticsearch # es安装文件设置为es用户的权限 su – es # 切换es用户 然后后台启动es。 注意：数据和日志要给es读写权限，当然可以让这些文件开最高的读写权限，但劝你最好不要这样做，应用chown命令更改文件所有权。[chmod 777 file]是对数据很不安全的命令，问题总结可以看看这篇文章。 chown -R es:es /data/to_path/es_data/data chown -R es:es /data/to_path/es_data/logs 3、浏览器插件 方式一：添加chrome的ElasticSearch Head插件， 进入后数据 http://xx.xx.xx.xx:9200/ 连接 （xx.xx.xx.xx为安装ES的主机IP） 效果图： 注：firefox插件则可用Elasticvue 方式二：安装ElasticSearch Head插件在服务主机上。 具体可以参考这篇文章。 效果图： 4、常见问题解答 这里有一些问题集锦，或许会遇到。 参考： https://zh.wikipedia.org/wiki/Elasticsearch https://zhuanlan.zhihu.com/p/255000117 https://blog.csdn.net/qq_45988496/article/details/116380830 https://www.cnblogs.com/kelelipeng/p/12290256.html https://blog.csdn.net/qq_31674359/article/details/80671749 https://blog.csdn.net/lizz861109/article/details/112532473 https://blog.csdn.net/wpc2018/article/details/121108389" />
+<meta property="og:description" content="Elasticsearch是一个基于Lucene库的搜索引擎。它提供了一个分布式、支持多租户的全文搜索引擎，具有HTTP?Web接口和无模式JSON文档。Elasticsearch是用Java开发的，并在Apache许可证下作为开源软件发布。官方客户端在Java、.NET（C#）、PHP、Python、Apache Groovy、Ruby和许多其他语言中都是可用的。[5]根据DB-Engines的排名显示，Elasticsearch是最受欢迎的企业搜索引擎，其次是Apache Solr，也是基于Lucene。 — 维基百科 Elasticsearch（以下简称ES）的安装步骤为： 下载安装文件，完成解压； 放入安装目录，设置配置文件； 后台启动 其他：添加分词插件；用户权限 一、下载安装文件，完成解压 下载地址： 官网: https://www.elastic.co/cn/downloads/elasticsearch 或 中文社区：https://elasticsearch.cn/download/ 如下载了版本7.3.2。主要关心的文件为 |目录 | 配置文件 | 描述 | |— |— |— | |bin |– |放置脚本文件，如启动脚本 elasticsearch, 插件安装脚本等。| |config |elasticserch.yml |elasticsearch 配置文件，如集群配置、jvm 配置等。| |jdk |– |java 运行环境 | |data |path.data |数据持久化文件 | |lib |– |依赖的相关类库 | |logs |path.log |日志文件 | |modules |– |包含的所有 ES 模块 | |plugins |– |包含的所有已安装的插件 | 注：data和logs会占用较大的空间，需要选择足够空间的位置，尽量不要放在安装目录下 二、放入安装目录，设置配置文件 安装前确保JDK已安装，并设置JAVA_HOME的环境变量。 (Elasticsearch 7.0 开始，内置了 Java 环境) export JAVA_HOME=/usr/local/jdk1.8.0_181 export PATH=$PATH:$JAVA_HOME/bin 放入安装目录后（如 /usr/local/elasticsearch/），开始编辑配置文件 config/elasticserch.yml cluster.name: elasticsearch # ES名称 node.name: node-1 # 节点名称 # data storage info path.data: /data/to_path/es_data/data # 数据存储位置 path.logs: /data/to_path/es_data/logs # 数据操作日志 bootstrap.memory_lock: false #内存锁 discovery.seed_hosts: [“127.0.0.1”] # 集群主机列表 cluster.initial_master_nodes: [“node-1”] # 初始化节点名称 http.port: 9200 # http 访问接口 transport.tcp.port: 9300 # tcp通信端口 #gateway.recover_after_nodes: 3 network.host: 0.0.0.0 # 外部访问设置 # head插件可访问es并且开启ES跨域 http.cors.enabled: true http.cors.allow-origin: “*” 三、后台启动 进入bin/目录下 启动测试 ./elasticsearch 这时候可能会遇到一些问题，可以去[常见问题解答]和[参考]中寻找对应的问题。 然后关闭进程 ps -aux | grep elasticsearch kill -9 [pid] 后台启动 ./elasticsearch -d 但可能会出现./elasticsearch正常启动，但./elasticsearch -d 则会报错，改成如下则成功 ./elasticsearch d 四、其他 1、分词插件 1）进入 https://github.com/medcl/elasticsearch-analysis-ik/releases 选择与安装ES版本对应的ik插件 2）在plugins/下，新建ik/目录，将分词插件解压后放入该目录 2、es用户登录启动 groupadd es # 创建组名 useradd es -g es # 创建用户并加入组 passwd es # 设置用户密码 chown –R es:es /usr/local/elasticsearch # es安装文件设置为es用户的权限 su – es # 切换es用户 然后后台启动es。 注意：数据和日志要给es读写权限，当然可以让这些文件开最高的读写权限，但劝你最好不要这样做，应用chown命令更改文件所有权。[chmod 777 file]是对数据很不安全的命令，问题总结可以看看这篇文章。 chown -R es:es /data/to_path/es_data/data chown -R es:es /data/to_path/es_data/logs 3、浏览器插件 方式一：添加chrome的ElasticSearch Head插件， 进入后数据 http://xx.xx.xx.xx:9200/ 连接 （xx.xx.xx.xx为安装ES的主机IP） 效果图： 注：firefox插件则可用Elasticvue 方式二：安装ElasticSearch Head插件在服务主机上。 具体可以参考这篇文章。 效果图： 4、常见问题解答 这里有一些问题集锦，或许会遇到。 参考： https://zh.wikipedia.org/wiki/Elasticsearch https://zhuanlan.zhihu.com/p/255000117 https://blog.csdn.net/qq_45988496/article/details/116380830 https://www.cnblogs.com/kelelipeng/p/12290256.html https://blog.csdn.net/qq_31674359/article/details/80671749 https://blog.csdn.net/lizz861109/article/details/112532473 https://blog.csdn.net/wpc2018/article/details/121108389" />
+<link rel="canonical" href="http://localhost:4001/2022/02/21/ES-install-config.html" />
+<meta property="og:url" content="http://localhost:4001/2022/02/21/ES-install-config.html" />
+<meta property="og:site_name" content="真实思想" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-02-21T17:45:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="ES安装与配置" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"True-Think"},"dateModified":"2022-02-21T17:45:00+08:00","datePublished":"2022-02-21T17:45:00+08:00","description":"Elasticsearch是一个基于Lucene库的搜索引擎。它提供了一个分布式、支持多租户的全文搜索引擎，具有HTTP?Web接口和无模式JSON文档。Elasticsearch是用Java开发的，并在Apache许可证下作为开源软件发布。官方客户端在Java、.NET（C#）、PHP、Python、Apache Groovy、Ruby和许多其他语言中都是可用的。[5]根据DB-Engines的排名显示，Elasticsearch是最受欢迎的企业搜索引擎，其次是Apache Solr，也是基于Lucene。 — 维基百科 Elasticsearch（以下简称ES）的安装步骤为： 下载安装文件，完成解压； 放入安装目录，设置配置文件； 后台启动 其他：添加分词插件；用户权限 一、下载安装文件，完成解压 下载地址： 官网: https://www.elastic.co/cn/downloads/elasticsearch 或 中文社区：https://elasticsearch.cn/download/ 如下载了版本7.3.2。主要关心的文件为 |目录 | 配置文件 | 描述 | |— |— |— | |bin |– |放置脚本文件，如启动脚本 elasticsearch, 插件安装脚本等。| |config |elasticserch.yml |elasticsearch 配置文件，如集群配置、jvm 配置等。| |jdk |– |java 运行环境 | |data |path.data |数据持久化文件 | |lib |– |依赖的相关类库 | |logs |path.log |日志文件 | |modules |– |包含的所有 ES 模块 | |plugins |– |包含的所有已安装的插件 | 注：data和logs会占用较大的空间，需要选择足够空间的位置，尽量不要放在安装目录下 二、放入安装目录，设置配置文件 安装前确保JDK已安装，并设置JAVA_HOME的环境变量。 (Elasticsearch 7.0 开始，内置了 Java 环境) export JAVA_HOME=/usr/local/jdk1.8.0_181 export PATH=$PATH:$JAVA_HOME/bin 放入安装目录后（如 /usr/local/elasticsearch/），开始编辑配置文件 config/elasticserch.yml cluster.name: elasticsearch # ES名称 node.name: node-1 # 节点名称 # data storage info path.data: /data/to_path/es_data/data # 数据存储位置 path.logs: /data/to_path/es_data/logs # 数据操作日志 bootstrap.memory_lock: false #内存锁 discovery.seed_hosts: [“127.0.0.1”] # 集群主机列表 cluster.initial_master_nodes: [“node-1”] # 初始化节点名称 http.port: 9200 # http 访问接口 transport.tcp.port: 9300 # tcp通信端口 #gateway.recover_after_nodes: 3 network.host: 0.0.0.0 # 外部访问设置 # head插件可访问es并且开启ES跨域 http.cors.enabled: true http.cors.allow-origin: “*” 三、后台启动 进入bin/目录下 启动测试 ./elasticsearch 这时候可能会遇到一些问题，可以去[常见问题解答]和[参考]中寻找对应的问题。 然后关闭进程 ps -aux | grep elasticsearch kill -9 [pid] 后台启动 ./elasticsearch -d 但可能会出现./elasticsearch正常启动，但./elasticsearch -d 则会报错，改成如下则成功 ./elasticsearch d 四、其他 1、分词插件 1）进入 https://github.com/medcl/elasticsearch-analysis-ik/releases 选择与安装ES版本对应的ik插件 2）在plugins/下，新建ik/目录，将分词插件解压后放入该目录 2、es用户登录启动 groupadd es # 创建组名 useradd es -g es # 创建用户并加入组 passwd es # 设置用户密码 chown –R es:es /usr/local/elasticsearch # es安装文件设置为es用户的权限 su – es # 切换es用户 然后后台启动es。 注意：数据和日志要给es读写权限，当然可以让这些文件开最高的读写权限，但劝你最好不要这样做，应用chown命令更改文件所有权。[chmod 777 file]是对数据很不安全的命令，问题总结可以看看这篇文章。 chown -R es:es /data/to_path/es_data/data chown -R es:es /data/to_path/es_data/logs 3、浏览器插件 方式一：添加chrome的ElasticSearch Head插件， 进入后数据 http://xx.xx.xx.xx:9200/ 连接 （xx.xx.xx.xx为安装ES的主机IP） 效果图： 注：firefox插件则可用Elasticvue 方式二：安装ElasticSearch Head插件在服务主机上。 具体可以参考这篇文章。 效果图： 4、常见问题解答 这里有一些问题集锦，或许会遇到。 参考： https://zh.wikipedia.org/wiki/Elasticsearch https://zhuanlan.zhihu.com/p/255000117 https://blog.csdn.net/qq_45988496/article/details/116380830 https://www.cnblogs.com/kelelipeng/p/12290256.html https://blog.csdn.net/qq_31674359/article/details/80671749 https://blog.csdn.net/lizz861109/article/details/112532473 https://blog.csdn.net/wpc2018/article/details/121108389","headline":"ES安装与配置","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/2022/02/21/ES-install-config.html"},"url":"http://localhost:4001/2022/02/21/ES-install-config.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="真实思想" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">真实思想</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">ES安装与配置</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2022-02-21T17:45:00+08:00" itemprop="datePublished">Feb 21, 2022
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">True-Think</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <blockquote>
+  <p><strong>Elasticsearch</strong>是一个基于<a href="https://zh.wikipedia.org/wiki/Lucene">Lucene</a>库的<a href="https://zh.wikipedia.org/wiki/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E">搜索引擎</a>。它提供了一个分布式、支持多租户的<a href="https://zh.wikipedia.org/wiki/%E5%85%A8%E6%96%87%E6%AA%A2%E7%B4%A2">全文搜索</a>引擎，具有<a href="https://zh.wikipedia.org/wiki/HTTP">HTTP</a>?Web接口和无模式<a href="https://zh.wikipedia.org/wiki/JSON">JSON</a>文档。Elasticsearch是用<a href="https://zh.wikipedia.org/wiki/Java">Java</a>开发的，并在<a href="https://zh.wikipedia.org/wiki/Apache%E8%AE%B8%E5%8F%AF%E8%AF%81">Apache许可证</a>下作为开源软件发布。官方客户端在<a href="https://zh.wikipedia.org/wiki/Java">Java</a>、<a href="https://zh.wikipedia.org/wiki/.NET%E6%A1%86%E6%9E%B6">.NET</a>（<a href="https://zh.wikipedia.org/wiki/C%E2%99%AF">C#</a>）、<a href="https://zh.wikipedia.org/wiki/PHP">PHP</a>、<a href="https://zh.wikipedia.org/wiki/Python">Python</a>、<a href="https://zh.wikipedia.org/wiki/Groovy">Apache Groovy</a>、<a href="https://zh.wikipedia.org/wiki/Ruby">Ruby</a>和许多其他语言中都是可用的。<a href="https://zh.wikipedia.org/wiki/Elasticsearch#cite_note-offizsite-5">[5]</a>根据DB-Engines的排名显示，Elasticsearch是最受欢迎的企业搜索引擎，其次是<a href="https://zh.wikipedia.org/wiki/Apache_Solr">Apache Solr</a>，也是基于Lucene。 — 维基百科</p>
+</blockquote>
+
+<p>Elasticsearch（以下简称ES）的安装步骤为：</p>
+
+<ul>
+  <li>
+    <p>下载安装文件，完成解压；</p>
+  </li>
+  <li>
+    <p>放入安装目录，设置配置文件；</p>
+  </li>
+  <li>
+    <p>后台启动</p>
+  </li>
+</ul>
+
+<p>其他：添加分词插件；用户权限</p>
+
+<h2 id="一下载安装文件完成解压">一、下载安装文件，完成解压</h2>
+
+<p>下载地址：</p>
+
+<p>官网: https://www.elastic.co/cn/downloads/elasticsearch
+或
+中文社区：https://elasticsearch.cn/download/</p>
+
+<p>如下载了版本7.3.2。主要关心的文件为
+|目录	| 配置文件	| 描述 |
+|—            |—                   |—      |
+|bin	|–	|放置脚本文件，如启动脚本 elasticsearch, 插件安装脚本等。|
+|config	|elasticserch.yml	|elasticsearch 配置文件，如集群配置、jvm 配置等。|
+|jdk	|–	|java 运行环境 |
+|data	|path.data	|数据持久化文件 |
+|lib	|–	|依赖的相关类库 |
+|logs	|path.log	|日志文件 |
+|modules	|–	|包含的所有 ES 模块 |
+|plugins	|–	|包含的所有已安装的插件 |
+注：data和logs会占用较大的空间，需要选择足够空间的位置，尽量不要放在安装目录下</p>
+
+<h2 id="二放入安装目录设置配置文件">二、放入安装目录，设置配置文件</h2>
+<p>安装前确保JDK已安装，并设置JAVA_HOME的环境变量。 (Elasticsearch 7.0 开始，内置了 Java 环境)</p>
+<blockquote>
+  <p>export JAVA_HOME=/usr/local/jdk1.8.0_181
+export PATH=$PATH:$JAVA_HOME/bin</p>
+</blockquote>
+
+<p>放入安装目录后（如  /usr/local/elasticsearch/），开始编辑配置文件 config/elasticserch.yml</p>
+<blockquote>
+  <p>cluster.name: elasticsearch # ES名称
+node.name: node-1  # 节点名称
+# data storage info
+path.data: /data/to_path/es_data/data   # 数据存储位置
+path.logs: /data/to_path/es_data/logs # 数据操作日志
+bootstrap.memory_lock: false #内存锁
+discovery.seed_hosts: [“127.0.0.1”] #  集群主机列表
+cluster.initial_master_nodes: [“node-1”]  # 初始化节点名称
+http.port: 9200 # http 访问接口
+transport.tcp.port: 9300 # tcp通信端口
+#gateway.recover_after_nodes: 3
+network.host: 0.0.0.0  # 外部访问设置
+# head插件可访问es并且开启ES跨域
+http.cors.enabled: true
+http.cors.allow-origin: “*”</p>
+</blockquote>
+
+<h2 id="三后台启动">三、后台启动</h2>
+<p>进入bin/目录下
+启动测试</p>
+<blockquote>
+  <p>./elasticsearch</p>
+</blockquote>
+
+<p>这时候可能会遇到一些问题，可以去[常见问题解答]和[参考]中寻找对应的问题。
+然后关闭进程</p>
+<blockquote>
+  <p>ps -aux | grep elasticsearch
+kill -9 [pid]</p>
+</blockquote>
+
+<p>后台启动</p>
+<blockquote>
+  <p>./elasticsearch -d</p>
+</blockquote>
+
+<p>但可能会出现./elasticsearch正常启动，但./elasticsearch -d 则会报错，改成如下则成功</p>
+<blockquote>
+  <p>./elasticsearch d</p>
+</blockquote>
+
+<h2 id="四其他">四、其他</h2>
+<h3 id="1分词插件">1、分词插件</h3>
+<p>1）进入 https://github.com/medcl/elasticsearch-analysis-ik/releases 选择<strong>与安装ES版本对应的</strong>ik插件
+2）在plugins/下，新建ik/目录，将分词插件解压后放入该目录</p>
+<h3 id="2es用户登录启动">2、es用户登录启动</h3>
+<blockquote>
+  <p>groupadd es  # 创建组名
+useradd es -g es  # 创建用户并加入组
+passwd es  # 设置用户密码
+chown –R es:es /usr/local/elasticsearch  # es安装文件设置为es用户的权限
+su – es  # 切换es用户</p>
+</blockquote>
+
+<p>然后后台启动es。
+注意：数据和日志要给es读写权限，当然可以让这些文件开最高的读写权限，但劝你最好不要这样做，应用chown命令更改文件所有权。[chmod 777 file]是对数据很不安全的命令，问题总结可以看看<a href="https://zhuanlan.zhihu.com/p/255000117">这篇文章</a>。</p>
+<blockquote>
+  <p>chown -R es:es  /data/to_path/es_data/data
+chown -R es:es  /data/to_path/es_data/logs</p>
+</blockquote>
+
+<h3 id="3浏览器插件">3、浏览器插件</h3>
+<p><strong>方式一</strong>：添加chrome的ElasticSearch Head插件，
+进入后数据 http://xx.xx.xx.xx:9200/ 连接 （xx.xx.xx.xx为安装ES的主机IP）
+效果图：
+<img src="https://upload-images.jianshu.io/upload_images/27635537-8b82299b7e444be7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png" /></p>
+
+<p>注：firefox插件则可用Elasticvue</p>
+
+<p><strong>方式二</strong>：安装ElasticSearch Head插件在服务主机上。
+具体可以参考<a href="https://blog.csdn.net/wpc2018/article/details/121108389">这篇文章</a>。
+效果图：
+<img src="https://upload-images.jianshu.io/upload_images/27635537-568a09e5071188c8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png" /></p>
+
+<h3 id="4常见问题解答">4、常见问题解答</h3>
+<p><a href="https://www.cnblogs.com/kelelipeng/p/12290256.html">这里</a>有一些问题集锦，或许会遇到。</p>
+
+<p>参考：
+https://zh.wikipedia.org/wiki/Elasticsearch
+https://zhuanlan.zhihu.com/p/255000117
+https://blog.csdn.net/qq_45988496/article/details/116380830
+https://www.cnblogs.com/kelelipeng/p/12290256.html
+https://blog.csdn.net/qq_31674359/article/details/80671749
+https://blog.csdn.net/lizz861109/article/details/112532473
+https://blog.csdn.net/wpc2018/article/details/121108389</p>
+
+  </div><a class="u-url" href="/2022/02/21/ES-install-config.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">真实思想</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">真实思想</li><li><a class="u-email" href="mailto:true-think@pm.me">true-think@pm.me</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/True-Think"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">True-Think</span></a></li><li><a href="https://www.twitter.com/true-think"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">true-think</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

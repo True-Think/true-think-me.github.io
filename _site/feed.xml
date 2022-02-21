@@ -1,4 +1,419 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4001/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4001/" rel="alternate" type="text/html" /><updated>2022-02-21T14:55:52+08:00</updated><id>http://localhost:4001/feed.xml</id><title type="html">Your awesome title</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Jekyll安装与快速使用!</title><link href="http://localhost:4001/jekyll/2022/02/21/%E5%AE%89%E8%A3%85jekyll%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8.html" rel="alternate" type="text/html" title="Jekyll安装与快速使用!" /><published>2022-02-21T14:53:00+08:00</published><updated>2022-02-21T14:53:00+08:00</updated><id>http://localhost:4001/jekyll/2022/02/21/%E5%AE%89%E8%A3%85jekyll%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8</id><content type="html" xml:base="http://localhost:4001/jekyll/2022/02/21/%E5%AE%89%E8%A3%85jekyll%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8.html"><![CDATA[<h1 id="配置jekeyll-for-windows">配置Jekeyll for windows</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4001/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4001/" rel="alternate" type="text/html" /><updated>2022-02-21T18:37:24+08:00</updated><id>http://localhost:4001/feed.xml</id><title type="html">真实思想</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">ES安装与配置</title><link href="http://localhost:4001/2022/02/21/ES-install-config.html" rel="alternate" type="text/html" title="ES安装与配置" /><published>2022-02-21T17:45:00+08:00</published><updated>2022-02-21T17:45:00+08:00</updated><id>http://localhost:4001/2022/02/21/ES-install-config</id><content type="html" xml:base="http://localhost:4001/2022/02/21/ES-install-config.html"><![CDATA[<blockquote>
+  <p><strong>Elasticsearch</strong>是一个基于<a href="https://zh.wikipedia.org/wiki/Lucene">Lucene</a>库的<a href="https://zh.wikipedia.org/wiki/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E">搜索引擎</a>。它提供了一个分布式、支持多租户的<a href="https://zh.wikipedia.org/wiki/%E5%85%A8%E6%96%87%E6%AA%A2%E7%B4%A2">全文搜索</a>引擎，具有<a href="https://zh.wikipedia.org/wiki/HTTP">HTTP</a>?Web接口和无模式<a href="https://zh.wikipedia.org/wiki/JSON">JSON</a>文档。Elasticsearch是用<a href="https://zh.wikipedia.org/wiki/Java">Java</a>开发的，并在<a href="https://zh.wikipedia.org/wiki/Apache%E8%AE%B8%E5%8F%AF%E8%AF%81">Apache许可证</a>下作为开源软件发布。官方客户端在<a href="https://zh.wikipedia.org/wiki/Java">Java</a>、<a href="https://zh.wikipedia.org/wiki/.NET%E6%A1%86%E6%9E%B6">.NET</a>（<a href="https://zh.wikipedia.org/wiki/C%E2%99%AF">C#</a>）、<a href="https://zh.wikipedia.org/wiki/PHP">PHP</a>、<a href="https://zh.wikipedia.org/wiki/Python">Python</a>、<a href="https://zh.wikipedia.org/wiki/Groovy">Apache Groovy</a>、<a href="https://zh.wikipedia.org/wiki/Ruby">Ruby</a>和许多其他语言中都是可用的。<a href="https://zh.wikipedia.org/wiki/Elasticsearch#cite_note-offizsite-5">[5]</a>根据DB-Engines的排名显示，Elasticsearch是最受欢迎的企业搜索引擎，其次是<a href="https://zh.wikipedia.org/wiki/Apache_Solr">Apache Solr</a>，也是基于Lucene。 — 维基百科</p>
+</blockquote>
+
+<p>Elasticsearch（以下简称ES）的安装步骤为：</p>
+
+<ul>
+  <li>
+    <p>下载安装文件，完成解压；</p>
+  </li>
+  <li>
+    <p>放入安装目录，设置配置文件；</p>
+  </li>
+  <li>
+    <p>后台启动</p>
+  </li>
+</ul>
+
+<p>其他：添加分词插件；用户权限</p>
+
+<h2 id="一下载安装文件完成解压">一、下载安装文件，完成解压</h2>
+
+<p>下载地址：</p>
+
+<p>官网: https://www.elastic.co/cn/downloads/elasticsearch
+或
+中文社区：https://elasticsearch.cn/download/</p>
+
+<p>如下载了版本7.3.2。主要关心的文件为
+|目录	| 配置文件	| 描述 |
+|—            |—                   |—      |
+|bin	|–	|放置脚本文件，如启动脚本 elasticsearch, 插件安装脚本等。|
+|config	|elasticserch.yml	|elasticsearch 配置文件，如集群配置、jvm 配置等。|
+|jdk	|–	|java 运行环境 |
+|data	|path.data	|数据持久化文件 |
+|lib	|–	|依赖的相关类库 |
+|logs	|path.log	|日志文件 |
+|modules	|–	|包含的所有 ES 模块 |
+|plugins	|–	|包含的所有已安装的插件 |
+注：data和logs会占用较大的空间，需要选择足够空间的位置，尽量不要放在安装目录下</p>
+
+<h2 id="二放入安装目录设置配置文件">二、放入安装目录，设置配置文件</h2>
+<p>安装前确保JDK已安装，并设置JAVA_HOME的环境变量。 (Elasticsearch 7.0 开始，内置了 Java 环境)</p>
+<blockquote>
+  <p>export JAVA_HOME=/usr/local/jdk1.8.0_181
+export PATH=$PATH:$JAVA_HOME/bin</p>
+</blockquote>
+
+<p>放入安装目录后（如  /usr/local/elasticsearch/），开始编辑配置文件 config/elasticserch.yml</p>
+<blockquote>
+  <p>cluster.name: elasticsearch # ES名称
+node.name: node-1  # 节点名称
+# data storage info
+path.data: /data/to_path/es_data/data   # 数据存储位置
+path.logs: /data/to_path/es_data/logs # 数据操作日志
+bootstrap.memory_lock: false #内存锁
+discovery.seed_hosts: [“127.0.0.1”] #  集群主机列表
+cluster.initial_master_nodes: [“node-1”]  # 初始化节点名称
+http.port: 9200 # http 访问接口
+transport.tcp.port: 9300 # tcp通信端口
+#gateway.recover_after_nodes: 3
+network.host: 0.0.0.0  # 外部访问设置
+# head插件可访问es并且开启ES跨域
+http.cors.enabled: true
+http.cors.allow-origin: “*”</p>
+</blockquote>
+
+<h2 id="三后台启动">三、后台启动</h2>
+<p>进入bin/目录下
+启动测试</p>
+<blockquote>
+  <p>./elasticsearch</p>
+</blockquote>
+
+<p>这时候可能会遇到一些问题，可以去[常见问题解答]和[参考]中寻找对应的问题。
+然后关闭进程</p>
+<blockquote>
+  <p>ps -aux | grep elasticsearch
+kill -9 [pid]</p>
+</blockquote>
+
+<p>后台启动</p>
+<blockquote>
+  <p>./elasticsearch -d</p>
+</blockquote>
+
+<p>但可能会出现./elasticsearch正常启动，但./elasticsearch -d 则会报错，改成如下则成功</p>
+<blockquote>
+  <p>./elasticsearch d</p>
+</blockquote>
+
+<h2 id="四其他">四、其他</h2>
+<h3 id="1分词插件">1、分词插件</h3>
+<p>1）进入 https://github.com/medcl/elasticsearch-analysis-ik/releases 选择<strong>与安装ES版本对应的</strong>ik插件
+2）在plugins/下，新建ik/目录，将分词插件解压后放入该目录</p>
+<h3 id="2es用户登录启动">2、es用户登录启动</h3>
+<blockquote>
+  <p>groupadd es  # 创建组名
+useradd es -g es  # 创建用户并加入组
+passwd es  # 设置用户密码
+chown –R es:es /usr/local/elasticsearch  # es安装文件设置为es用户的权限
+su – es  # 切换es用户</p>
+</blockquote>
+
+<p>然后后台启动es。
+注意：数据和日志要给es读写权限，当然可以让这些文件开最高的读写权限，但劝你最好不要这样做，应用chown命令更改文件所有权。[chmod 777 file]是对数据很不安全的命令，问题总结可以看看<a href="https://zhuanlan.zhihu.com/p/255000117">这篇文章</a>。</p>
+<blockquote>
+  <p>chown -R es:es  /data/to_path/es_data/data
+chown -R es:es  /data/to_path/es_data/logs</p>
+</blockquote>
+
+<h3 id="3浏览器插件">3、浏览器插件</h3>
+<p><strong>方式一</strong>：添加chrome的ElasticSearch Head插件，
+进入后数据 http://xx.xx.xx.xx:9200/ 连接 （xx.xx.xx.xx为安装ES的主机IP）
+效果图：
+<img src="https://upload-images.jianshu.io/upload_images/27635537-8b82299b7e444be7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png" /></p>
+
+<p>注：firefox插件则可用Elasticvue</p>
+
+<p><strong>方式二</strong>：安装ElasticSearch Head插件在服务主机上。
+具体可以参考<a href="https://blog.csdn.net/wpc2018/article/details/121108389">这篇文章</a>。
+效果图：
+<img src="https://upload-images.jianshu.io/upload_images/27635537-568a09e5071188c8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png" /></p>
+
+<h3 id="4常见问题解答">4、常见问题解答</h3>
+<p><a href="https://www.cnblogs.com/kelelipeng/p/12290256.html">这里</a>有一些问题集锦，或许会遇到。</p>
+
+<p>参考：
+https://zh.wikipedia.org/wiki/Elasticsearch
+https://zhuanlan.zhihu.com/p/255000117
+https://blog.csdn.net/qq_45988496/article/details/116380830
+https://www.cnblogs.com/kelelipeng/p/12290256.html
+https://blog.csdn.net/qq_31674359/article/details/80671749
+https://blog.csdn.net/lizz861109/article/details/112532473
+https://blog.csdn.net/wpc2018/article/details/121108389</p>]]></content><author><name>True-Think</name></author><category term="技术" /><category term="ES" /><category term="ElasticSearch" /><summary type="html"><![CDATA[Elasticsearch是一个基于Lucene库的搜索引擎。它提供了一个分布式、支持多租户的全文搜索引擎，具有HTTP?Web接口和无模式JSON文档。Elasticsearch是用Java开发的，并在Apache许可证下作为开源软件发布。官方客户端在Java、.NET（C#）、PHP、Python、Apache Groovy、Ruby和许多其他语言中都是可用的。[5]根据DB-Engines的排名显示，Elasticsearch是最受欢迎的企业搜索引擎，其次是Apache Solr，也是基于Lucene。 — 维基百科 Elasticsearch（以下简称ES）的安装步骤为： 下载安装文件，完成解压； 放入安装目录，设置配置文件； 后台启动 其他：添加分词插件；用户权限 一、下载安装文件，完成解压 下载地址： 官网: https://www.elastic.co/cn/downloads/elasticsearch 或 中文社区：https://elasticsearch.cn/download/ 如下载了版本7.3.2。主要关心的文件为 |目录 | 配置文件 | 描述 | |— |— |— | |bin |– |放置脚本文件，如启动脚本 elasticsearch, 插件安装脚本等。| |config |elasticserch.yml |elasticsearch 配置文件，如集群配置、jvm 配置等。| |jdk |– |java 运行环境 | |data |path.data |数据持久化文件 | |lib |– |依赖的相关类库 | |logs |path.log |日志文件 | |modules |– |包含的所有 ES 模块 | |plugins |– |包含的所有已安装的插件 | 注：data和logs会占用较大的空间，需要选择足够空间的位置，尽量不要放在安装目录下 二、放入安装目录，设置配置文件 安装前确保JDK已安装，并设置JAVA_HOME的环境变量。 (Elasticsearch 7.0 开始，内置了 Java 环境) export JAVA_HOME=/usr/local/jdk1.8.0_181 export PATH=$PATH:$JAVA_HOME/bin 放入安装目录后（如 /usr/local/elasticsearch/），开始编辑配置文件 config/elasticserch.yml cluster.name: elasticsearch # ES名称 node.name: node-1 # 节点名称 # data storage info path.data: /data/to_path/es_data/data # 数据存储位置 path.logs: /data/to_path/es_data/logs # 数据操作日志 bootstrap.memory_lock: false #内存锁 discovery.seed_hosts: [“127.0.0.1”] # 集群主机列表 cluster.initial_master_nodes: [“node-1”] # 初始化节点名称 http.port: 9200 # http 访问接口 transport.tcp.port: 9300 # tcp通信端口 #gateway.recover_after_nodes: 3 network.host: 0.0.0.0 # 外部访问设置 # head插件可访问es并且开启ES跨域 http.cors.enabled: true http.cors.allow-origin: “*” 三、后台启动 进入bin/目录下 启动测试 ./elasticsearch 这时候可能会遇到一些问题，可以去[常见问题解答]和[参考]中寻找对应的问题。 然后关闭进程 ps -aux | grep elasticsearch kill -9 [pid] 后台启动 ./elasticsearch -d 但可能会出现./elasticsearch正常启动，但./elasticsearch -d 则会报错，改成如下则成功 ./elasticsearch d 四、其他 1、分词插件 1）进入 https://github.com/medcl/elasticsearch-analysis-ik/releases 选择与安装ES版本对应的ik插件 2）在plugins/下，新建ik/目录，将分词插件解压后放入该目录 2、es用户登录启动 groupadd es # 创建组名 useradd es -g es # 创建用户并加入组 passwd es # 设置用户密码 chown –R es:es /usr/local/elasticsearch # es安装文件设置为es用户的权限 su – es # 切换es用户 然后后台启动es。 注意：数据和日志要给es读写权限，当然可以让这些文件开最高的读写权限，但劝你最好不要这样做，应用chown命令更改文件所有权。[chmod 777 file]是对数据很不安全的命令，问题总结可以看看这篇文章。 chown -R es:es /data/to_path/es_data/data chown -R es:es /data/to_path/es_data/logs 3、浏览器插件 方式一：添加chrome的ElasticSearch Head插件， 进入后数据 http://xx.xx.xx.xx:9200/ 连接 （xx.xx.xx.xx为安装ES的主机IP） 效果图： 注：firefox插件则可用Elasticvue 方式二：安装ElasticSearch Head插件在服务主机上。 具体可以参考这篇文章。 效果图： 4、常见问题解答 这里有一些问题集锦，或许会遇到。 参考： https://zh.wikipedia.org/wiki/Elasticsearch https://zhuanlan.zhihu.com/p/255000117 https://blog.csdn.net/qq_45988496/article/details/116380830 https://www.cnblogs.com/kelelipeng/p/12290256.html https://blog.csdn.net/qq_31674359/article/details/80671749 https://blog.csdn.net/lizz861109/article/details/112532473 https://blog.csdn.net/wpc2018/article/details/121108389]]></summary></entry><entry><title type="html">Typora编辑工具</title><link href="http://localhost:4001/2022/02/21/Typora-tool.html" rel="alternate" type="text/html" title="Typora编辑工具" /><published>2022-02-21T17:45:00+08:00</published><updated>2022-02-21T17:45:00+08:00</updated><id>http://localhost:4001/2022/02/21/Typora-tool</id><content type="html" xml:base="http://localhost:4001/2022/02/21/Typora-tool.html"><![CDATA[<p>#test Typora</p>
+
+<p>[Toc]</p>
+
+<h1 id="首先">首先</h1>
+
+<h3 id="常用快捷键">常用快捷键</h3>
+
+<ul>
+  <li>加粗： <code class="language-plaintext highlighter-rouge">Ctrl + B</code></li>
+  <li>撤销： <code class="language-plaintext highlighter-rouge">Ctrl + Z</code></li>
+  <li>字体倾斜 ：<code class="language-plaintext highlighter-rouge">Ctrl+I</code></li>
+  <li>下划线：<code class="language-plaintext highlighter-rouge">Ctrl+U</code></li>
+  <li>多级标题： <code class="language-plaintext highlighter-rouge">Ctrl + 1~6</code></li>
+  <li>有序列表：<code class="language-plaintext highlighter-rouge">Ctrl + Shift + [</code></li>
+  <li>无序列表：<code class="language-plaintext highlighter-rouge">Ctrl + Shift + ]</code></li>
+  <li>降级快捷键 ：<code class="language-plaintext highlighter-rouge">Tab</code></li>
+  <li>升级快捷键：<code class="language-plaintext highlighter-rouge">Shift + Tab</code></li>
+  <li>插入链接： <code class="language-plaintext highlighter-rouge">Ctrl + K</code></li>
+  <li>插入公式： <code class="language-plaintext highlighter-rouge">Ctrl + Shift + M</code></li>
+  <li>行内代码： <code class="language-plaintext highlighter-rouge">Ctrl + Shift + K</code></li>
+  <li>插入图片： <code class="language-plaintext highlighter-rouge">Ctrl + Shift + I</code></li>
+  <li>返回Typora顶部：<code class="language-plaintext highlighter-rouge">Ctrl+Home</code></li>
+  <li>返回Typora底部 ：<code class="language-plaintext highlighter-rouge">Ctrl+End</code></li>
+  <li>创建表格 ：<code class="language-plaintext highlighter-rouge">Ctrl+T</code></li>
+  <li>选中某句话 ：<code class="language-plaintext highlighter-rouge">Ctrl+L</code></li>
+  <li>选中某个单词 ：<code class="language-plaintext highlighter-rouge">Ctrl+D</code></li>
+  <li>选中相同格式的文字 ：<code class="language-plaintext highlighter-rouge">Ctrl+E</code></li>
+  <li>搜索: <code class="language-plaintext highlighter-rouge">Ctrl+F</code></li>
+  <li>搜索并替换 ：<code class="language-plaintext highlighter-rouge">Ctrl+H</code></li>
+  <li>删除线 ：<code class="language-plaintext highlighter-rouge">Alt+Shift+5</code></li>
+  <li>引用 ：<code class="language-plaintext highlighter-rouge">Ctrl+Shift+Q</code></li>
+  <li>生成目录：<code class="language-plaintext highlighter-rouge">[TOC]+Enter</code></li>
+</ul>
+
+<h4 id="参考">参考</h4>
+
+<p>知乎：2020Typora小白完全使用<a href="https://zhuanlan.zhihu.com/p/293557841">指南</a></p>
+
+<p>Typora<a href="https://www.cnblogs.com/hider/p/11614688.html">入门</a></p>
+
+<h2 id="其次">其次</h2>
+
+<p>done</p>
+
+<p>公式：
+\(\lim_{x\to\infty}\exp(-x)=0\)
+公式2：
+\(x=x^2+1\)
+公式3：</p>
+
+<p>\(f(x)=1/(exp+1)\)
+公式4：
+\(\mathbf{V}_1\times\mathbf{V}_2 = \mathbf{X}_3\)
+:smile:</p>
+
+<h3 id="再次">再次</h3>
+
+<p>done</p>
+
+<p>测试<code class="language-plaintext highlighter-rouge">代码块</code>：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">get_one</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index_name</span><span class="p">,</span> <span class="n">_id</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">es</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">index_name</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">_id</span><span class="p">,</span> <span class="n">doc_type</span><span class="o">=</span><span class="n">index_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">代码测试</code></p>
+
+<h4 id="然后">然后</h4>
+
+<p>done</p>
+
+<h5 id="接着">接着</h5>
+
+<p>done</p>
+
+<h6 id="然后-1">然后</h6>
+
+<p>done</p>]]></content><author><name>True-Think</name></author><category term="技术" /><category term="Typora" /><summary type="html"><![CDATA[#test Typora [Toc] 首先 常用快捷键 加粗： Ctrl + B 撤销： Ctrl + Z 字体倾斜 ：Ctrl+I 下划线：Ctrl+U 多级标题： Ctrl + 1~6 有序列表：Ctrl + Shift + [ 无序列表：Ctrl + Shift + ] 降级快捷键 ：Tab 升级快捷键：Shift + Tab 插入链接： Ctrl + K 插入公式： Ctrl + Shift + M 行内代码： Ctrl + Shift + K 插入图片： Ctrl + Shift + I 返回Typora顶部：Ctrl+Home 返回Typora底部 ：Ctrl+End 创建表格 ：Ctrl+T 选中某句话 ：Ctrl+L 选中某个单词 ：Ctrl+D 选中相同格式的文字 ：Ctrl+E 搜索: Ctrl+F 搜索并替换 ：Ctrl+H 删除线 ：Alt+Shift+5 引用 ：Ctrl+Shift+Q 生成目录：[TOC]+Enter 参考 知乎：2020Typora小白完全使用指南 Typora入门 其次 done 公式： \(\lim_{x\to\infty}\exp(-x)=0\) 公式2： \(x=x^2+1\) 公式3： \(f(x)=1/(exp+1)\) 公式4： \(\mathbf{V}_1\times\mathbf{V}_2 = \mathbf{X}_3\) :smile: 再次 done 测试代码块： def get_one(self, index_name, _id): res = self.es.get(index=index_name, id=_id, doc_type=index_name) return res 代码测试 然后 done 接着 done 然后 done]]></summary></entry><entry><title type="html">git命令</title><link href="http://localhost:4001/2022/02/21/git-command.html" rel="alternate" type="text/html" title="git命令" /><published>2022-02-21T17:45:00+08:00</published><updated>2022-02-21T17:45:00+08:00</updated><id>http://localhost:4001/2022/02/21/git-command</id><content type="html" xml:base="http://localhost:4001/2022/02/21/git-command.html"><![CDATA[<h3 id="command-line-instructions">Command line instructions</h3>
+
+<h5 id="git-global-setup">Git global setup</h5>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config --global user.name "xxx"
+git config --global user.email "xxx@xxx.xx"
+</code></pre></div></div>
+
+<h5 id="create-a-new-repository">Create a new repository</h5>
+<p>新建项目后，在gitlab上创建一个README.md,再clone</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone git@it.xxx.com:xxx/xxx.git
+cd manager_tag_matcher
+touch README.md
+git add README.md
+git commit -m "add README"
+git push -u origin master
+</code></pre></div></div>
+
+<h5 id="existing-folder">Existing folder</h5>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd existing_folder
+git init
+git remote add origin git@git.xxx.com:xxx/xxx.git
+git add .
+git commit -m "Initial commit"
+git push -u origin master
+</code></pre></div></div>
+
+<h5 id="existing-git-repository">Existing Git repository</h5>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd existing_repo
+git remote rename origin old-origin
+git remote add origin git@it.xxx.com:xxx/xxx.git
+git push -u origin --all
+git push -u origin --tags
+</code></pre></div></div>
+
+<h3 id="撤销命令">撤销命令</h3>
+
+<ul>
+  <li>
+    <p>撤销commit</p>
+
+    <p>​	<strong>git reset –soft HEAD</strong></p>
+
+    <p>HEAD^的意思是上一个版本，也可以写成HEAD~1</p>
+
+    <p>如果你进行了2次commit，想都撤回，可以使用HEAD~2</p>
+  </li>
+  <li>
+    <p>撤销add</p>
+
+    <p>​	<strong>git rm -r –cached .</strong></p>
+
+    <p>-r 说明有文件夹，‘.’代表所有，也可指定具体文件</p>
+
+    <h2 id="至于这几个参数">至于这几个参数：</h2>
+
+    <h2 id="mixed">–mixed</h2>
+
+    <p>意思是：不删除工作空间改动代码，撤销commit，并且撤销git add . 操作</p>
+
+    <p>这个为默认参数,git reset –mixed HEAD^ 和 git reset HEAD^ 效果是一样的。</p>
+
+    <h2 id="soft">–soft</h2>
+
+    <p>不删除工作空间改动代码，撤销commit，不撤销git add .</p>
+
+    <h2 id="hard">–hard</h2>
+
+    <p>删除工作空间改动代码，撤销commit，撤销git add .</p>
+
+    <p>注意完成这个操作后，就恢复到了上一次的commit状态。</p>
+
+    <h3 id="顺便说一下如果commit注释写错了只是想改一下注释只需要">顺便说一下，如果commit注释写错了，只是想改一下注释，只需要：</h3>
+
+    <p>git commit –amend</p>
+
+    <p>此时会进入默认vim编辑器，修改注释完毕后保存就好了。</p>
+  </li>
+</ul>]]></content><author><name>True-Think</name></author><category term="技术" /><category term="git" /><summary type="html"><![CDATA[Command line instructions Git global setup git config --global user.name "xxx" git config --global user.email "xxx@xxx.xx" Create a new repository 新建项目后，在gitlab上创建一个README.md,再clone git clone git@it.xxx.com:xxx/xxx.git cd manager_tag_matcher touch README.md git add README.md git commit -m "add README" git push -u origin master Existing folder cd existing_folder git init git remote add origin git@git.xxx.com:xxx/xxx.git git add . git commit -m "Initial commit" git push -u origin master Existing Git repository cd existing_repo git remote rename origin old-origin git remote add origin git@it.xxx.com:xxx/xxx.git git push -u origin --all git push -u origin --tags 撤销命令 撤销commit ​ git reset –soft HEAD HEAD^的意思是上一个版本，也可以写成HEAD~1 如果你进行了2次commit，想都撤回，可以使用HEAD~2 撤销add ​ git rm -r –cached . -r 说明有文件夹，‘.’代表所有，也可指定具体文件 至于这几个参数： –mixed 意思是：不删除工作空间改动代码，撤销commit，并且撤销git add . 操作 这个为默认参数,git reset –mixed HEAD^ 和 git reset HEAD^ 效果是一样的。 –soft 不删除工作空间改动代码，撤销commit，不撤销git add . –hard 删除工作空间改动代码，撤销commit，撤销git add . 注意完成这个操作后，就恢复到了上一次的commit状态。 顺便说一下，如果commit注释写错了，只是想改一下注释，只需要： git commit –amend 此时会进入默认vim编辑器，修改注释完毕后保存就好了。]]></summary></entry><entry><title type="html">mongodb字段操作</title><link href="http://localhost:4001/2022/02/21/mongodb-item-op.html" rel="alternate" type="text/html" title="mongodb字段操作" /><published>2022-02-21T17:45:00+08:00</published><updated>2022-02-21T17:45:00+08:00</updated><id>http://localhost:4001/2022/02/21/mongodb-item-op</id><content type="html" xml:base="http://localhost:4001/2022/02/21/mongodb-item-op.html"><![CDATA[<h2 id="重复字段去除">重复字段去除</h2>
+<h3 id="1查重">（1）、查重</h3>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.getCollection<span class="o">(</span><span class="s1">'doc_base_info'</span><span class="o">)</span>.aggregate<span class="o">([</span>
+<span class="o">{</span>       <span class="s1">'$group'</span>:<span class="o">{</span>
+            _id:<span class="o">{</span>doc_id: <span class="s1">'$doc_id'</span><span class="o">}</span>, 
+            count:<span class="o">{</span><span class="s1">'$sum'</span>:1<span class="o">}</span>
+        <span class="o">}</span>
+<span class="o">}</span>,  <span class="o">{</span><span class="s1">'$match'</span>: <span class="o">{</span>count:<span class="o">{</span><span class="s1">'$gt'</span>:1<span class="o">}}}</span>
+<span class="o">]</span>, <span class="o">{</span>allowDiskUse:true<span class="o">})</span>
+</code></pre></div></div>
+
+<h3 id="2去重">（2）、去重</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.getCollection<span class="o">(</span><span class="s1">'doc_base_info'</span><span class="o">)</span>.aggregate<span class="o">([</span>
+<span class="o">{</span>       <span class="s1">'$group'</span>:<span class="o">{</span>
+            _id:<span class="s1">'$doc_id'</span>, 
+            count:<span class="o">{</span><span class="s1">'$sum'</span>:1<span class="o">}</span>, 
+            dups:<span class="o">{</span><span class="s1">'$addToSet'</span>:<span class="s1">'$_id'</span><span class="o">}</span>
+        <span class="o">}</span>
+<span class="o">}</span>,  <span class="o">{</span><span class="s1">'$match'</span>: <span class="o">{</span>count:<span class="o">{</span><span class="s1">'$gt'</span>:1<span class="o">}}}</span>
+<span class="o">]</span>, <span class="o">{</span>allowDiskUse:true<span class="o">})</span>.forEach<span class="o">(</span><span class="k">function</span><span class="o">(</span>doc<span class="o">){</span>
+    doc.dups.shift<span class="o">()</span><span class="p">;</span>
+    db.doc_base_info.remove<span class="o">({</span>_id:<span class="o">{</span><span class="s1">'$in'</span>:doc.dups<span class="o">}})</span><span class="p">;</span> <span class="c"># 注意修改名字</span>
+<span class="o">})</span><span class="p">;</span>
+</code></pre></div></div>
+<p>doc.dups.shift(); // 保留一个</p>
+
+<h2 id="2不含有某字段查询">2、不含有某字段查询</h2>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.getCollection<span class="o">(</span><span class="s1">'doc_base_info'</span><span class="o">)</span>.find<span class="o">({</span> <span class="s2">"category_id"</span>:<span class="o">{</span><span class="s2">"</span><span class="nv">$exists</span><span class="s2">"</span>: <span class="nb">false</span><span class="o">}</span> <span class="o">}</span>, <span class="o">{</span><span class="s2">"doc_id"</span>: 1<span class="o">})</span>.count<span class="o">()</span>
+</code></pre></div></div>
+
+<h2 id="3更新字段">3、更新字段</h2>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.getCollection<span class="o">(</span><span class="s1">'train_status_test'</span><span class="o">)</span>.update<span class="o">({}</span>, <span class="o">{</span><span class="s2">"</span><span class="nv">$set</span><span class="s2">"</span>:<span class="o">{</span><span class="s2">"finished"</span>: 1<span class="o">}}</span>, <span class="o">{</span><span class="s2">"multi"</span>:true<span class="o">})</span>
+</code></pre></div></div>
+<p>pymongo</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>self.doc_db_info.update<span class="o">({</span><span class="s2">"doc_id"</span>: <span class="o">{</span><span class="s2">"</span><span class="nv">$in</span><span class="s2">"</span>: doc_ids<span class="o">}}</span>, <span class="o">{</span><span class="s2">"</span><span class="nv">$set</span><span class="s2">"</span>: <span class="o">{</span><span class="s2">"is_train"</span>: 1<span class="o">}}</span>,
+                                <span class="nv">multi</span><span class="o">=</span>True, <span class="nv">upsert</span><span class="o">=</span>False<span class="o">)</span>
+</code></pre></div></div>
+
+<h2 id="4类型转换">4、类型转换</h2>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.doc_base_info.find<span class="o">({</span>doc_id:<span class="o">{</span><span class="nv">$type</span>:2<span class="o">}})</span> //查询doc_id字段数据类型为字符串
+db.doc_base_info.find<span class="o">({</span>doc_id:<span class="o">{</span><span class="nv">$type</span>:<span class="s2">"string"</span><span class="o">}})</span> //查询doc_id字段数据类型为字符串
+</code></pre></div></div>
+<p>doc_id字段从string转为int型</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.getCollection<span class="o">(</span><span class="s1">'doc_base_info'</span><span class="o">)</span>.find<span class="o">({</span><span class="s1">'doc_id'</span> : <span class="o">{</span> <span class="s2">"</span><span class="nv">$type</span><span class="s2">"</span> : 2 <span class="o">}})</span>.forEach<span class="o">(</span><span class="k">function</span><span class="o">(</span>x<span class="o">)</span> <span class="o">{</span>
+    x.doc_id <span class="o">=</span> NumberInt<span class="o">(</span>x.doc_id<span class="o">)</span><span class="p">;</span>
+    db.getCollection<span class="o">(</span><span class="s1">'doc_base_info'</span><span class="o">)</span>.save<span class="o">(</span>x<span class="o">)</span><span class="p">;</span>
+<span class="o">})</span>
+</code></pre></div></div>
+
+<h2 id="5更新-不同的每条">5、更新 不同的每条</h2>
+<p>每条不同更新</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>update_data <span class="o">=</span> <span class="o">[]</span>  <span class="c"># 待更新列表</span>
+doc_up_dict <span class="o">=</span> <span class="o">[]</span>  <span class="c"># 单条待更新字段</span>
+
+update_data.append<span class="o">(</span>pymongo.UpdateMany<span class="o">({</span><span class="s2">"_id"</span>: item[<span class="s2">"_id"</span><span class="o">]}</span>, <span class="o">{</span><span class="s1">'$set'</span>: doc_up_dict<span class="o">}))</span>
+mongo_db.bulk_write<span class="o">(</span>update_data<span class="o">)</span>
+</code></pre></div></div>]]></content><author><name>True-Think</name></author><category term="技术" /><category term="mongodb" /><summary type="html"><![CDATA[重复字段去除 （1）、查重 db.getCollection('doc_base_info').aggregate([ { '$group':{ _id:{doc_id: '$doc_id'}, count:{'$sum':1} } }, {'$match': {count:{'$gt':1}}} ], {allowDiskUse:true}) （2）、去重 db.getCollection('doc_base_info').aggregate([ { '$group':{ _id:'$doc_id', count:{'$sum':1}, dups:{'$addToSet':'$_id'} } }, {'$match': {count:{'$gt':1}}} ], {allowDiskUse:true}).forEach(function(doc){ doc.dups.shift(); db.doc_base_info.remove({_id:{'$in':doc.dups}}); # 注意修改名字 }); doc.dups.shift(); // 保留一个 2、不含有某字段查询 db.getCollection('doc_base_info').find({ "category_id":{"$exists": false} }, {"doc_id": 1}).count() 3、更新字段 db.getCollection('train_status_test').update({}, {"$set":{"finished": 1}}, {"multi":true}) pymongo self.doc_db_info.update({"doc_id": {"$in": doc_ids}}, {"$set": {"is_train": 1}}, multi=True, upsert=False) 4、类型转换 db.doc_base_info.find({doc_id:{$type:2}}) //查询doc_id字段数据类型为字符串 db.doc_base_info.find({doc_id:{$type:"string"}}) //查询doc_id字段数据类型为字符串 doc_id字段从string转为int型 db.getCollection('doc_base_info').find({'doc_id' : { "$type" : 2 }}).forEach(function(x) { x.doc_id = NumberInt(x.doc_id); db.getCollection('doc_base_info').save(x); }) 5、更新 不同的每条 每条不同更新 update_data = [] # 待更新列表 doc_up_dict = [] # 单条待更新字段 update_data.append(pymongo.UpdateMany({"_id": item["_id"]}, {'$set': doc_up_dict})) mongo_db.bulk_write(update_data)]]></summary></entry><entry><title type="html">spark入门</title><link href="http://localhost:4001/2022/02/21/spark-first.html" rel="alternate" type="text/html" title="spark入门" /><published>2022-02-21T17:45:00+08:00</published><updated>2022-02-21T17:45:00+08:00</updated><id>http://localhost:4001/2022/02/21/spark-first</id><content type="html" xml:base="http://localhost:4001/2022/02/21/spark-first.html"><![CDATA[<h1 id="spark入门">Spark入门</h1>
+
+<h3 id="spark-概念">Spark 概念</h3>
+
+<ul>
+  <li>解决MapReduce计算慢的问题，接口简单编程不灵活，只能离线计算</li>
+  <li>基于内存分布式计算框架，速度快</li>
+  <li>只负责计算，不负责存储</li>
+  <li>Spark离线计算功能类似于mapreduce</li>
+  <li>Hadoop生态圈
+    <ul>
+      <li>批处理：MapReduce、Hive、Pig</li>
+      <li>流式计算：Storm</li>
+      <li>交互式计算：Impala、presto</li>
+    </ul>
+  </li>
+  <li>Spark优势：
+    <ul>
+      <li>运行速度快</li>
+      <li>自身生态比较完善
+        <ul>
+          <li>Spark sql</li>
+          <li>Spark streaming</li>
+          <li>Spark mllib/Spark ML</li>
+        </ul>
+      </li>
+      <li>api比较丰富</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="什么是rdd">什么是RDD？</h3>
+
+<p>RDD(Resillient Distributed Dataset)叫做弹性分布式数据集，是</p>
+
+<ul>
+  <li>
+    <p>Spark中最基本的数据抽象，是<strong><u>不可变、可分区、并行计算</u></strong>的。</p>
+  </li>
+  <li>所有Spark中对数据的操作最终都会转换成RDD操作：
+    <ul>
+      <li>spark sql</li>
+      <li>spark streaming</li>
+      <li>spark ml、spark mllib</li>
+    </ul>
+  </li>
+  <li>同hdfs分布式原理，
+    <ul>
+      <li>hdfs文件被切分为多个block存储在各个节点上，而RDD是被切分为多个partition。不同的partition可能在不同的节点上。</li>
+      <li>读hdfs时，spark加载hdfs数据1个block对于的rdd的partition</li>
+      <li>写数据时，spark 1个partition可能对于多个block</li>
+    </ul>
+  </li>
+  <li>创建RDD
+    <ul>
+      <li>内存方式
+        <ul>
+          <li>rdd1 = sc.parallelizel(data)</li>
+          <li>rdd1.mapreduce()</li>
+        </ul>
+      </li>
+      <li>创建RDD时可以指定partition的数量（RDD会分成几份）一个partition会对应一个task,根据CPU的内核数来指定partition(1核对应2-4个partition)</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>True-Think</name></author><category term="技术" /><category term="spark" /><summary type="html"><![CDATA[Spark入门 Spark 概念 解决MapReduce计算慢的问题，接口简单编程不灵活，只能离线计算 基于内存分布式计算框架，速度快 只负责计算，不负责存储 Spark离线计算功能类似于mapreduce Hadoop生态圈 批处理：MapReduce、Hive、Pig 流式计算：Storm 交互式计算：Impala、presto Spark优势： 运行速度快 自身生态比较完善 Spark sql Spark streaming Spark mllib/Spark ML api比较丰富 什么是RDD？ RDD(Resillient Distributed Dataset)叫做弹性分布式数据集，是 Spark中最基本的数据抽象，是不可变、可分区、并行计算的。 所有Spark中对数据的操作最终都会转换成RDD操作： spark sql spark streaming spark ml、spark mllib 同hdfs分布式原理， hdfs文件被切分为多个block存储在各个节点上，而RDD是被切分为多个partition。不同的partition可能在不同的节点上。 读hdfs时，spark加载hdfs数据1个block对于的rdd的partition 写数据时，spark 1个partition可能对于多个block 创建RDD 内存方式 rdd1 = sc.parallelizel(data) rdd1.mapreduce() 创建RDD时可以指定partition的数量（RDD会分成几份）一个partition会对应一个task,根据CPU的内核数来指定partition(1核对应2-4个partition)]]></summary></entry><entry><title type="html">Jekyll安装与快速使用!</title><link href="http://localhost:4001/jekyll/2022/02/21/jekyll-tool.html" rel="alternate" type="text/html" title="Jekyll安装与快速使用!" /><published>2022-02-21T14:53:00+08:00</published><updated>2022-02-21T14:53:00+08:00</updated><id>http://localhost:4001/jekyll/2022/02/21/jekyll-tool</id><content type="html" xml:base="http://localhost:4001/jekyll/2022/02/21/jekyll-tool.html"><![CDATA[<h1 id="配置jekeyll-for-windows">配置Jekeyll for windows</h1>
 
 <p>需要安装：<br />
 Ruby (version 2.5.0 or higher)<br />

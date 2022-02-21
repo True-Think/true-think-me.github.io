@@ -1,0 +1,82 @@
+I"G<p>#test Typora</p>
+
+<p>[Toc]</p>
+
+<h1 id="首先">首先</h1>
+
+<h3 id="常用快捷键">常用快捷键</h3>
+
+<ul>
+  <li>加粗： <code class="language-plaintext highlighter-rouge">Ctrl + B</code></li>
+  <li>撤销： <code class="language-plaintext highlighter-rouge">Ctrl + Z</code></li>
+  <li>字体倾斜 ：<code class="language-plaintext highlighter-rouge">Ctrl+I</code></li>
+  <li>下划线：<code class="language-plaintext highlighter-rouge">Ctrl+U</code></li>
+  <li>多级标题： <code class="language-plaintext highlighter-rouge">Ctrl + 1~6</code></li>
+  <li>有序列表：<code class="language-plaintext highlighter-rouge">Ctrl + Shift + [</code></li>
+  <li>无序列表：<code class="language-plaintext highlighter-rouge">Ctrl + Shift + ]</code></li>
+  <li>降级快捷键 ：<code class="language-plaintext highlighter-rouge">Tab</code></li>
+  <li>升级快捷键：<code class="language-plaintext highlighter-rouge">Shift + Tab</code></li>
+  <li>插入链接： <code class="language-plaintext highlighter-rouge">Ctrl + K</code></li>
+  <li>插入公式： <code class="language-plaintext highlighter-rouge">Ctrl + Shift + M</code></li>
+  <li>行内代码： <code class="language-plaintext highlighter-rouge">Ctrl + Shift + K</code></li>
+  <li>插入图片： <code class="language-plaintext highlighter-rouge">Ctrl + Shift + I</code></li>
+  <li>返回Typora顶部：<code class="language-plaintext highlighter-rouge">Ctrl+Home</code></li>
+  <li>返回Typora底部 ：<code class="language-plaintext highlighter-rouge">Ctrl+End</code></li>
+  <li>创建表格 ：<code class="language-plaintext highlighter-rouge">Ctrl+T</code></li>
+  <li>选中某句话 ：<code class="language-plaintext highlighter-rouge">Ctrl+L</code></li>
+  <li>选中某个单词 ：<code class="language-plaintext highlighter-rouge">Ctrl+D</code></li>
+  <li>选中相同格式的文字 ：<code class="language-plaintext highlighter-rouge">Ctrl+E</code></li>
+  <li>搜索: <code class="language-plaintext highlighter-rouge">Ctrl+F</code></li>
+  <li>搜索并替换 ：<code class="language-plaintext highlighter-rouge">Ctrl+H</code></li>
+  <li>删除线 ：<code class="language-plaintext highlighter-rouge">Alt+Shift+5</code></li>
+  <li>引用 ：<code class="language-plaintext highlighter-rouge">Ctrl+Shift+Q</code></li>
+  <li>生成目录：<code class="language-plaintext highlighter-rouge">[TOC]+Enter</code></li>
+</ul>
+
+<h4 id="参考">参考</h4>
+
+<p>知乎：2020Typora小白完全使用<a href="https://zhuanlan.zhihu.com/p/293557841">指南</a></p>
+
+<p>Typora<a href="https://www.cnblogs.com/hider/p/11614688.html">入门</a></p>
+
+<h2 id="其次">其次</h2>
+
+<p>done</p>
+
+<p>公式：
+\(\lim_{x\to\infty}\exp(-x)=0\)
+公式2：
+\(x=x^2+1\)
+公式3：</p>
+
+<p>\(f(x)=1/(exp+1)\)
+公式4：
+\(\mathbf{V}_1\times\mathbf{V}_2 = \mathbf{X}_3\)
+:smile:</p>
+
+<h3 id="再次">再次</h3>
+
+<p>done</p>
+
+<p>测试<code class="language-plaintext highlighter-rouge">代码块</code>：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">get_one</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index_name</span><span class="p">,</span> <span class="n">_id</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">es</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">index_name</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">_id</span><span class="p">,</span> <span class="n">doc_type</span><span class="o">=</span><span class="n">index_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">代码测试</code></p>
+
+<h4 id="然后">然后</h4>
+
+<p>done</p>
+
+<h5 id="接着">接着</h5>
+
+<p>done</p>
+
+<h6 id="然后-1">然后</h6>
+
+<p>done</p>
+
+:ET

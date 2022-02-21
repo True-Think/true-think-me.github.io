@@ -1,0 +1,67 @@
+I"�<h1 id="spark入门">Spark入门</h1>
+
+<h3 id="spark-概念">Spark 概念</h3>
+
+<ul>
+  <li>解决MapReduce计算慢的问题，接口简单编程不灵活，只能离线计算</li>
+  <li>基于内存分布式计算框架，速度快</li>
+  <li>只负责计算，不负责存储</li>
+  <li>Spark离线计算功能类似于mapreduce</li>
+  <li>Hadoop生态圈
+    <ul>
+      <li>批处理：MapReduce、Hive、Pig</li>
+      <li>流式计算：Storm</li>
+      <li>交互式计算：Impala、presto</li>
+    </ul>
+  </li>
+  <li>Spark优势：
+    <ul>
+      <li>运行速度快</li>
+      <li>自身生态比较完善
+        <ul>
+          <li>Spark sql</li>
+          <li>Spark streaming</li>
+          <li>Spark mllib/Spark ML</li>
+        </ul>
+      </li>
+      <li>api比较丰富</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="什么是rdd">什么是RDD？</h3>
+
+<p>RDD(Resillient Distributed Dataset)叫做弹性分布式数据集，是</p>
+
+<ul>
+  <li>
+    <p>Spark中最基本的数据抽象，是<strong><u>不可变、可分区、并行计算</u></strong>的。</p>
+  </li>
+  <li>所有Spark中对数据的操作最终都会转换成RDD操作：
+    <ul>
+      <li>spark sql</li>
+      <li>spark streaming</li>
+      <li>spark ml、spark mllib</li>
+    </ul>
+  </li>
+  <li>同hdfs分布式原理，
+    <ul>
+      <li>hdfs文件被切分为多个block存储在各个节点上，而RDD是被切分为多个partition。不同的partition可能在不同的节点上。</li>
+      <li>读hdfs时，spark加载hdfs数据1个block对于的rdd的partition</li>
+      <li>写数据时，spark 1个partition可能对于多个block</li>
+    </ul>
+  </li>
+  <li>创建RDD
+    <ul>
+      <li>内存方式
+        <ul>
+          <li>rdd1 = sc.parallelizel(data)</li>
+          <li>rdd1.mapreduce()</li>
+        </ul>
+      </li>
+      <li>创建RDD时可以指定partition的数量（RDD会分成几份）一个partition会对应一个task,根据CPU的内核数来指定partition(1核对应2-4个partition)</li>
+    </ul>
+  </li>
+</ul>
+
+:ET

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>git命令 | 真实思想</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="git命令" />
+<meta name="author" content="True-Think" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Command line instructions Git global setup git config --global user.name &quot;xxx&quot; git config --global user.email &quot;xxx@xxx.xx&quot; Create a new repository 新建项目后，在gitlab上创建一个README.md,再clone git clone git@it.xxx.com:xxx/xxx.git cd manager_tag_matcher touch README.md git add README.md git commit -m &quot;add README&quot; git push -u origin master Existing folder cd existing_folder git init git remote add origin git@git.xxx.com:xxx/xxx.git git add . git commit -m &quot;Initial commit&quot; git push -u origin master Existing Git repository cd existing_repo git remote rename origin old-origin git remote add origin git@it.xxx.com:xxx/xxx.git git push -u origin --all git push -u origin --tags 撤销命令 撤销commit ​ git reset –soft HEAD HEAD^的意思是上一个版本，也可以写成HEAD~1 如果你进行了2次commit，想都撤回，可以使用HEAD~2 撤销add ​ git rm -r –cached . -r 说明有文件夹，‘.’代表所有，也可指定具体文件 至于这几个参数： –mixed 意思是：不删除工作空间改动代码，撤销commit，并且撤销git add . 操作 这个为默认参数,git reset –mixed HEAD^ 和 git reset HEAD^ 效果是一样的。 –soft 不删除工作空间改动代码，撤销commit，不撤销git add . –hard 删除工作空间改动代码，撤销commit，撤销git add . 注意完成这个操作后，就恢复到了上一次的commit状态。 顺便说一下，如果commit注释写错了，只是想改一下注释，只需要： git commit –amend 此时会进入默认vim编辑器，修改注释完毕后保存就好了。" />
+<meta property="og:description" content="Command line instructions Git global setup git config --global user.name &quot;xxx&quot; git config --global user.email &quot;xxx@xxx.xx&quot; Create a new repository 新建项目后，在gitlab上创建一个README.md,再clone git clone git@it.xxx.com:xxx/xxx.git cd manager_tag_matcher touch README.md git add README.md git commit -m &quot;add README&quot; git push -u origin master Existing folder cd existing_folder git init git remote add origin git@git.xxx.com:xxx/xxx.git git add . git commit -m &quot;Initial commit&quot; git push -u origin master Existing Git repository cd existing_repo git remote rename origin old-origin git remote add origin git@it.xxx.com:xxx/xxx.git git push -u origin --all git push -u origin --tags 撤销命令 撤销commit ​ git reset –soft HEAD HEAD^的意思是上一个版本，也可以写成HEAD~1 如果你进行了2次commit，想都撤回，可以使用HEAD~2 撤销add ​ git rm -r –cached . -r 说明有文件夹，‘.’代表所有，也可指定具体文件 至于这几个参数： –mixed 意思是：不删除工作空间改动代码，撤销commit，并且撤销git add . 操作 这个为默认参数,git reset –mixed HEAD^ 和 git reset HEAD^ 效果是一样的。 –soft 不删除工作空间改动代码，撤销commit，不撤销git add . –hard 删除工作空间改动代码，撤销commit，撤销git add . 注意完成这个操作后，就恢复到了上一次的commit状态。 顺便说一下，如果commit注释写错了，只是想改一下注释，只需要： git commit –amend 此时会进入默认vim编辑器，修改注释完毕后保存就好了。" />
+<link rel="canonical" href="http://localhost:4001/2022/02/21/git-command.html" />
+<meta property="og:url" content="http://localhost:4001/2022/02/21/git-command.html" />
+<meta property="og:site_name" content="真实思想" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-02-21T17:45:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="git命令" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"True-Think"},"dateModified":"2022-02-21T17:45:00+08:00","datePublished":"2022-02-21T17:45:00+08:00","description":"Command line instructions Git global setup git config --global user.name &quot;xxx&quot; git config --global user.email &quot;xxx@xxx.xx&quot; Create a new repository 新建项目后，在gitlab上创建一个README.md,再clone git clone git@it.xxx.com:xxx/xxx.git cd manager_tag_matcher touch README.md git add README.md git commit -m &quot;add README&quot; git push -u origin master Existing folder cd existing_folder git init git remote add origin git@git.xxx.com:xxx/xxx.git git add . git commit -m &quot;Initial commit&quot; git push -u origin master Existing Git repository cd existing_repo git remote rename origin old-origin git remote add origin git@it.xxx.com:xxx/xxx.git git push -u origin --all git push -u origin --tags 撤销命令 撤销commit ​ git reset –soft HEAD HEAD^的意思是上一个版本，也可以写成HEAD~1 如果你进行了2次commit，想都撤回，可以使用HEAD~2 撤销add ​ git rm -r –cached . -r 说明有文件夹，‘.’代表所有，也可指定具体文件 至于这几个参数： –mixed 意思是：不删除工作空间改动代码，撤销commit，并且撤销git add . 操作 这个为默认参数,git reset –mixed HEAD^ 和 git reset HEAD^ 效果是一样的。 –soft 不删除工作空间改动代码，撤销commit，不撤销git add . –hard 删除工作空间改动代码，撤销commit，撤销git add . 注意完成这个操作后，就恢复到了上一次的commit状态。 顺便说一下，如果commit注释写错了，只是想改一下注释，只需要： git commit –amend 此时会进入默认vim编辑器，修改注释完毕后保存就好了。","headline":"git命令","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/2022/02/21/git-command.html"},"url":"http://localhost:4001/2022/02/21/git-command.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="真实思想" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">真实思想</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">git命令</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2022-02-21T17:45:00+08:00" itemprop="datePublished">Feb 21, 2022
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">True-Think</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h3 id="command-line-instructions">Command line instructions</h3>
+
+<h5 id="git-global-setup">Git global setup</h5>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config --global user.name "xxx"
+git config --global user.email "xxx@xxx.xx"
+</code></pre></div></div>
+
+<h5 id="create-a-new-repository">Create a new repository</h5>
+<p>新建项目后，在gitlab上创建一个README.md,再clone</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone git@it.xxx.com:xxx/xxx.git
+cd manager_tag_matcher
+touch README.md
+git add README.md
+git commit -m "add README"
+git push -u origin master
+</code></pre></div></div>
+
+<h5 id="existing-folder">Existing folder</h5>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd existing_folder
+git init
+git remote add origin git@git.xxx.com:xxx/xxx.git
+git add .
+git commit -m "Initial commit"
+git push -u origin master
+</code></pre></div></div>
+
+<h5 id="existing-git-repository">Existing Git repository</h5>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd existing_repo
+git remote rename origin old-origin
+git remote add origin git@it.xxx.com:xxx/xxx.git
+git push -u origin --all
+git push -u origin --tags
+</code></pre></div></div>
+
+<h3 id="撤销命令">撤销命令</h3>
+
+<ul>
+  <li>
+    <p>撤销commit</p>
+
+    <p>​	<strong>git reset –soft HEAD</strong></p>
+
+    <p>HEAD^的意思是上一个版本，也可以写成HEAD~1</p>
+
+    <p>如果你进行了2次commit，想都撤回，可以使用HEAD~2</p>
+  </li>
+  <li>
+    <p>撤销add</p>
+
+    <p>​	<strong>git rm -r –cached .</strong></p>
+
+    <p>-r 说明有文件夹，‘.’代表所有，也可指定具体文件</p>
+
+    <h2 id="至于这几个参数">至于这几个参数：</h2>
+
+    <h2 id="mixed">–mixed</h2>
+
+    <p>意思是：不删除工作空间改动代码，撤销commit，并且撤销git add . 操作</p>
+
+    <p>这个为默认参数,git reset –mixed HEAD^ 和 git reset HEAD^ 效果是一样的。</p>
+
+    <h2 id="soft">–soft</h2>
+
+    <p>不删除工作空间改动代码，撤销commit，不撤销git add .</p>
+
+    <h2 id="hard">–hard</h2>
+
+    <p>删除工作空间改动代码，撤销commit，撤销git add .</p>
+
+    <p>注意完成这个操作后，就恢复到了上一次的commit状态。</p>
+
+    <h3 id="顺便说一下如果commit注释写错了只是想改一下注释只需要">顺便说一下，如果commit注释写错了，只是想改一下注释，只需要：</h3>
+
+    <p>git commit –amend</p>
+
+    <p>此时会进入默认vim编辑器，修改注释完毕后保存就好了。</p>
+  </li>
+</ul>
+
+
+  </div><a class="u-url" href="/2022/02/21/git-command.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">真实思想</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">真实思想</li><li><a class="u-email" href="mailto:true-think@pm.me">true-think@pm.me</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/True-Think"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">True-Think</span></a></li><li><a href="https://www.twitter.com/true-think"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">true-think</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

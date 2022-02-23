@@ -4,7 +4,7 @@ title:      "spark入门"
 subtitle:   " \"spark基本概念\""
 date:       2022-02-21 17:45:00 +0800
 author:     "True-Think"
-header-img: "img/aurora-2020-02-21.jpg"
+header-img: "img/new/mao_cow.jpg"
 catalog: true
 tags:
     - 技术

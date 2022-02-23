@@ -4,6 +4,11 @@ title:  "Jekyll安装与快速使用!"
 date:   2022-02-21 14:53:00 +0800
 categories: jekyll
 author: True Think
+header-img: "img/hanlai.jpg"
+catalog: true
+tags:
+    - 技术
+    - Typora
 ---
 
 # 配置Jekeyll for windows

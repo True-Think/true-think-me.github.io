@@ -3,7 +3,7 @@ layout:     post
 title:      "mongodb字段操作"
 date:       2022-02-21 17:45:00 +0800
 author:     "True-Think"
-header-img: "img/aurora-2020-02-21.jpg"
+header-img: "img/new/green_kimtour.jpg"
 catalog: true
 tags:
     - 技术

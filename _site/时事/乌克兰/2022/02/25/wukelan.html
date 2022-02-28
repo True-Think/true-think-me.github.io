@@ -12,35 +12,25 @@
 
     <!-- Open Graph -->
     <meta property="og:title"
-        content="mongodb字段操作 - ">
+        content="乌克兰战争随想（一）：战争为什么会开始 - ">
     
     <meta property="og:type" content="article">
-    <meta property="og:description" content="重复字段去除
-（1）、查重
-db.getCollection('doc_base_info').aggregate([
-{       '$group':{
-            _id:{doc_id: '$doc_id'}, 
-            count:{'$sum':1}
-        }
-},  {'$match': {count:{'$gt':1}}}
-], {all...">
+    <meta property="og:description" content="正当徐州铁链女第五份公告让人惊掉下巴时，本来应是一场全民质疑和求真相的时候，但普京突然全面入侵了乌克兰，人们的注意力一下被转移。这样一来，徐州这边的真相可能变得遥遥无期。
+
+我们暂时先说乌克兰的事情，这个徐州性奴问题俺后面一定补上。
+
+乌克兰事情过程大致是这样的，乌克兰东南有个克里米亚半岛，这个地方可出名了，当年土耳其和沙俄争得死去活来，英国人也在这折戟沉杀。最后沙俄夺取了，苏联继承了，后赫...">
     
-    <meta property="article:published_time" content=" 2022-02-21T17:45:00Z">
+    <meta property="article:published_time" content=" 2022-02-25T18:41:21Z">
     
     
-    <meta property="article:author" content="True-Think">
-    
-    
-    <meta property="article:tag" content="技术">
-    
-    <meta property="article:tag" content="mongodb">
     
     
     <meta property="og:image" content="http://localhost:4001">
-    <meta property="og:url" content="http://localhost:4001/2022/02/21/mongodb-item-op.html">
+    <meta property="og:url" content="http://localhost:4001/%E6%97%B6%E4%BA%8B/%E4%B9%8C%E5%85%8B%E5%85%B0/2022/02/25/wukelan.html">
     <meta property="og:site_name" content="">
 
-    <title>mongodb字段操作 - </title>
+    <title>乌克兰战争随想（一）：战争为什么会开始 - </title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -49,7 +39,7 @@ db.getCollection('doc_base_info').aggregate([
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4001/2022/02/21/mongodb-item-op.html">
+    <link rel="canonical" href="http://localhost:4001/%E6%97%B6%E4%BA%8B/%E4%B9%8C%E5%85%8B%E5%85%B0/2022/02/25/wukelan.html">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href=" /css/bootstrap.min.css">
@@ -209,7 +199,7 @@ db.getCollection('doc_base_info').aggregate([
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/new/green_kimtour.jpg" width="0" height="0"> -->
+<!-- <img src="/img/new/aurora-2020-02-21.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 
@@ -218,7 +208,7 @@ db.getCollection('doc_base_info').aggregate([
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('/img/new/green_kimtour.jpg');
+        background-image: url('/img/new/aurora-2020-02-21.jpg');
         background: ;
     }
 
@@ -235,15 +225,11 @@ db.getCollection('doc_base_info').aggregate([
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/archive/?tag=%E6%8A%80%E6%9C%AF" title="技术">技术</a>
-                        
-                        <a class="tag" href="/archive/?tag=mongodb" title="mongodb">mongodb</a>
-                        
                     </div>
-                    <h1>mongodb字段操作</h1>
+                    <h1>乌克兰战争随想（一）：战争为什么会开始</h1>
                     
                     <h2 class="subheading"></h2>
-                    <span class="meta">Posted by True-Think on February 21, 2022</span>
+                    <span class="meta">Posted by 真实思想 on February 25, 2022</span>
                 </div>
             </div>
         </div>
@@ -269,83 +255,35 @@ db.getCollection('doc_base_info').aggregate([
                 <!-- Multi-Lingual -->
                 
 
-				<h2 id="重复字段去除">重复字段去除</h2>
-<h3 id="1查重">（1）、查重</h3>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.getCollection<span class="o">(</span><span class="s1">'doc_base_info'</span><span class="o">)</span>.aggregate<span class="o">([</span>
-<span class="o">{</span>       <span class="s1">'$group'</span>:<span class="o">{</span>
-            _id:<span class="o">{</span>doc_id: <span class="s1">'$doc_id'</span><span class="o">}</span>, 
-            count:<span class="o">{</span><span class="s1">'$sum'</span>:1<span class="o">}</span>
-        <span class="o">}</span>
-<span class="o">}</span>,  <span class="o">{</span><span class="s1">'$match'</span>: <span class="o">{</span>count:<span class="o">{</span><span class="s1">'$gt'</span>:1<span class="o">}}}</span>
-<span class="o">]</span>, <span class="o">{</span>allowDiskUse:true<span class="o">})</span>
-</code></pre></div></div>
+				<p>正当徐州铁链女第五份公告让人惊掉下巴时，本来应是一场全民质疑和求真相的时候，但普京突然全面入侵了乌克兰，人们的注意力一下被转移。这样一来，徐州这边的真相可能变得遥遥无期。</p>
 
-<h3 id="2去重">（2）、去重</h3>
+<p>我们暂时先说乌克兰的事情，这个徐州性奴问题俺后面一定补上。</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.getCollection<span class="o">(</span><span class="s1">'doc_base_info'</span><span class="o">)</span>.aggregate<span class="o">([</span>
-<span class="o">{</span>       <span class="s1">'$group'</span>:<span class="o">{</span>
-            _id:<span class="s1">'$doc_id'</span>, 
-            count:<span class="o">{</span><span class="s1">'$sum'</span>:1<span class="o">}</span>, 
-            dups:<span class="o">{</span><span class="s1">'$addToSet'</span>:<span class="s1">'$_id'</span><span class="o">}</span>
-        <span class="o">}</span>
-<span class="o">}</span>,  <span class="o">{</span><span class="s1">'$match'</span>: <span class="o">{</span>count:<span class="o">{</span><span class="s1">'$gt'</span>:1<span class="o">}}}</span>
-<span class="o">]</span>, <span class="o">{</span>allowDiskUse:true<span class="o">})</span>.forEach<span class="o">(</span><span class="k">function</span><span class="o">(</span>doc<span class="o">){</span>
-    doc.dups.shift<span class="o">()</span><span class="p">;</span>
-    db.doc_base_info.remove<span class="o">({</span>_id:<span class="o">{</span><span class="s1">'$in'</span>:doc.dups<span class="o">}})</span><span class="p">;</span> <span class="c"># 注意修改名字</span>
-<span class="o">})</span><span class="p">;</span>
-</code></pre></div></div>
-<p>doc.dups.shift(); // 保留一个</p>
+<p>乌克兰事情过程大致是这样的，乌克兰东南有个克里米亚半岛，这个地方可出名了，当年土耳其和沙俄争得死去活来，英国人也在这折戟沉杀。最后沙俄夺取了，苏联继承了，后赫鲁晓夫为了庆祝俄乌合并三百周年给了乌克兰，苏联解体后自然也是乌克兰的。但2014年乌克兰亲俄政府失势，普京说赫鲁晓夫说的不算了，强行夺了回来（以公投形式，像不像苏联对外蒙的做法？）。乌克兰自然打也打不过，只好忍气吞声，同年东部两个州想暴力脱欧入俄，最后乌俄两国签订《明斯克协议》，让这两州自治。但是中欧各国都慌了，万一俄罗斯对他们也这样干就惨了，于是纷纷申请加入北约军事组织，也就是拜码头，靠大哥。苦主乌克兰当然也申请了，但国内也有亲俄派，不是很顺利。最近好像有点眉目了，普京表示不同意。最后就是现在这样，先宣称承认东部两个自治州独立，后干脆直接全面入侵乌克兰，大有整个乌克兰都是我的之势。
+<img src="img_1.png" alt="img_1.png" />
+对于乌克兰，国内的报道重点描述乌克兰时怎样怎样不知好歹，非想加入北约，伤害了俄罗斯人民的感情，人家一向爱好和平、大国担当的俄罗斯帝国迫不得已，
+要去乌克兰维护和平了。当然啦，为了和平不可避免的造成了，大规模的平民伤亡和基础设施的破坏，这些在爱好和平的人看来是必要的损失。</p>
 
-<h2 id="2不含有某字段查询">2、不含有某字段查询</h2>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.getCollection<span class="o">(</span><span class="s1">'doc_base_info'</span><span class="o">)</span>.find<span class="o">({</span> <span class="s2">"category_id"</span>:<span class="o">{</span><span class="s2">"</span><span class="nv">$exists</span><span class="s2">"</span>: <span class="nb">false</span><span class="o">}</span> <span class="o">}</span>, <span class="o">{</span><span class="s2">"doc_id"</span>: 1<span class="o">})</span>.count<span class="o">()</span>
-</code></pre></div></div>
+<p>呵。。。法西斯估计也没有过这样厚颜无耻。最近（2月25号）的消息是，俄罗斯国内50多个城市的民众自发组织反战集会，普京下令镇压，已经逮捕了数千人。另一条消息是，塔利班（一直被联合国认为是恐怖组织）呼吁俄乌双发停止战争，以和平谈判的方式解决分歧。这点被打的乌克兰开战初自然是求之不得的，但普京好像不喜欢别人这样劝他，不然也不会逮捕这么多反战的俄罗斯民众。</p>
 
-<h2 id="3更新字段">3、更新字段</h2>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.getCollection<span class="o">(</span><span class="s1">'train_status_test'</span><span class="o">)</span>.update<span class="o">({}</span>, <span class="o">{</span><span class="s2">"</span><span class="nv">$set</span><span class="s2">"</span>:<span class="o">{</span><span class="s2">"finished"</span>: 1<span class="o">}}</span>, <span class="o">{</span><span class="s2">"multi"</span>:true<span class="o">})</span>
-</code></pre></div></div>
-<p>pymongo</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>self.doc_db_info.update<span class="o">({</span><span class="s2">"doc_id"</span>: <span class="o">{</span><span class="s2">"</span><span class="nv">$in</span><span class="s2">"</span>: doc_ids<span class="o">}}</span>, <span class="o">{</span><span class="s2">"</span><span class="nv">$set</span><span class="s2">"</span>: <span class="o">{</span><span class="s2">"is_train"</span>: 1<span class="o">}}</span>,
-                                <span class="nv">multi</span><span class="o">=</span>True, <span class="nv">upsert</span><span class="o">=</span>False<span class="o">)</span>
-</code></pre></div></div>
+<p><br />让人愤怒的是美国和欧洲各国的隔岸观火，不可否认欧美国家存在很多道貌岸然的伪君子，当然这是人的问题，自由民主的制度是（几乎）所有正义人向往的，但只能解决国内的问题。对国际间的不义之事，因为也捞不到什么选票，政客们自然不上心。正义感缺失的领导人统治国家，在民主社会就是这样偏向孤立主义，自己过好就行不管他人死活；如果这种人做了专制国家的领导，自然是走向对内独裁对外侵略扩张的法西斯道路，普京就是这类代表。&lt;/br&gt;</p>
 
-<h2 id="4类型转换">4、类型转换</h2>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.doc_base_info.find<span class="o">({</span>doc_id:<span class="o">{</span><span class="nv">$type</span>:2<span class="o">}})</span> //查询doc_id字段数据类型为字符串
-db.doc_base_info.find<span class="o">({</span>doc_id:<span class="o">{</span><span class="nv">$type</span>:<span class="s2">"string"</span><span class="o">}})</span> //查询doc_id字段数据类型为字符串
-</code></pre></div></div>
-<p>doc_id字段从string转为int型</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.getCollection<span class="o">(</span><span class="s1">'doc_base_info'</span><span class="o">)</span>.find<span class="o">({</span><span class="s1">'doc_id'</span> : <span class="o">{</span> <span class="s2">"</span><span class="nv">$type</span><span class="s2">"</span> : 2 <span class="o">}})</span>.forEach<span class="o">(</span><span class="k">function</span><span class="o">(</span>x<span class="o">)</span> <span class="o">{</span>
-    x.doc_id <span class="o">=</span> NumberInt<span class="o">(</span>x.doc_id<span class="o">)</span><span class="p">;</span>
-    db.getCollection<span class="o">(</span><span class="s1">'doc_base_info'</span><span class="o">)</span>.save<span class="o">(</span>x<span class="o">)</span><span class="p">;</span>
-<span class="o">})</span>
-</code></pre></div></div>
-
-<h2 id="5更新-不同的每条">5、更新 不同的每条</h2>
-<p>每条不同更新</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>update_data <span class="o">=</span> <span class="o">[]</span>  <span class="c"># 待更新列表</span>
-doc_up_dict <span class="o">=</span> <span class="o">[]</span>  <span class="c"># 单条待更新字段</span>
-
-update_data.append<span class="o">(</span>pymongo.UpdateMany<span class="o">({</span><span class="s2">"_id"</span>: item[<span class="s2">"_id"</span><span class="o">]}</span>, <span class="o">{</span><span class="s1">'$set'</span>: doc_up_dict<span class="o">}))</span>
-mongo_db.bulk_write<span class="o">(</span>update_data<span class="o">)</span>
-</code></pre></div></div>
+<p><br />自美国自成立以来，本土从没有受过攻击，又其文化深层来自英国，所以孤立主义盛行。
+1937年，日军全面侵华，美国作壁上观，还估计也就一年中国便沦陷。
+蒋介石那段时间苦苦哀求，西方世界无人援手。直到日军轰炸南京后的哭泣的小孩张照片流传到美国，美国人的正义感终于被唤醒，开始大规模援助我们了。之后便是我们知道的事了&lt;/br&gt;
+<img src="img.png" alt="img.png" /></p>
 
 
                 <hr style="visibility: hidden;">
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2022/02/21/git-command.html" data-toggle="tooltip" data-placement="top" title="git命令">
+                        <a href="/2022/02/23/ten-years-future.html" data-toggle="tooltip" data-placement="top" title="Ten Years Future">
                         Previous<br>
-                        <span>git命令</span>
+                        <span>Ten Years Future</span>
                         </a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2022/02/21/spark-first.html" data-toggle="tooltip" data-placement="top" title="spark入门">
-                        Next<br>
-                        <span>spark入门</span>
-                        </a>
-                    </li>
                     
                 </ul>
                 <hr style="visibility: hidden;">

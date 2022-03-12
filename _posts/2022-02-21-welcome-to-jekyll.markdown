@@ -5,6 +5,7 @@ date:   2022-02-21 14:51:21 +0800
 categories: jekyll update
 header-img: "img/new/aurora-2020-02-21.jpg"
 ---
+欢迎来到我的博客，从今天开始我将记录我的思想、学习心得和重要的事件在这里了XD
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
 
 Jekyll requires blog post files to be named according to the following format:
